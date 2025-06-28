@@ -8,8 +8,13 @@ mydb = mysql.connector.connect(
 )
 
 mycursor = mydb.cursor()
-mycursor.execute("CREATE DATABASE IF NOT EXISTS alx_book_store")
-mydb.commit()
-print(f"Database \'alx_book_store\' created successfully!")
+try:
+    mycursor.execute("CREATE DATABASE IF NOT EXISTS alx_book_store")
+    mydb.commit()
+    print(f"Database \'alx_book_store\' created successfully!")
+except mysql.connector.Error:
+    print(f"Didn't connected")
+    
+
 mycursor.close()
 mydb.close()
